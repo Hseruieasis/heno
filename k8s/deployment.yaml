@@ -1,0 +1,34 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: heno
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: heno
+  template:
+    metadata:
+      labels:
+        app: heno
+    spec:
+      containers:
+      - image: okteto.dev/heno:latest
+        name: heno
+        ports:
+        - containerPort: 8080
+        env:
+        - name: PORT
+          value: "8080"
+        - name: ProxySite
+          value: "mirror.umd.edu"
+        - name: Vless_UUID
+          value: "1116e22a-b5cf-402f-a715-62c5ec7b8086"
+        - name: Vless_Path
+          value: "/app"
+        - name: Vmess_UUID
+          value: "1116e22a-b5cf-402f-a715-62c5ec7b8086"
+        - name: Vmess_Path
+          value: "/ter"
+        - name: Share_Path
+          value: "/share233"
